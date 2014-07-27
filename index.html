@@ -1,0 +1,49 @@
+<!doctype>
+<html lang='en-US'>
+<head>
+	<meta charset='utf-8'>
+	<title>Github Api App</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<script type="text/javascript">
+		// $(document).ready(function(){
+		// 	// $('#ghsubmitbtn').on('click', function(e){
+		// 	// 	e.preventDefault();
+		// 	// 	$('ghapidata').html('<div id="loader"> <img src="loader.gif" alt="loading"/></div>');
+		// 	})
+		// })
+		$(document).ready(function(){
+			$('#ghsubmitbtn').on('click', function(){
+				$('#ghapidata').html('<div id="loader"> <img src="ajax-loader.gif" alt="loading"> </div>');
+				var username = $('#ghusername').val();
+				var requesturi = 'https://api.github.com/users/' + username;
+				
+
+				// alert('got this far, username is: ' + username);
+				$.getJSON(requesturi, function(output){
+					var displayHTML = '<h3>Username: ' + output.login + '</h3><h3>' + output.email + '</h3>';
+					$('#ghapidata').html(displayHTML);
+				})
+			})
+		})
+
+	</script>
+</head>
+<body>
+	<div id='container'>
+		<h1>Simple Github API</h1>
+		<p>Enter a GitHub username below</p>
+		<div class='row'>
+			<div class='.col-lg-4'>
+				<input type='text' class='form-control' id='ghusername' name='ghusername' placeholder='Github username...'/>
+				<a href='#' id='ghsubmitbtn' class='btn btn-small btn-info'> Pull User Data</a>
+			</div>
+		</div>
+		
+		<div id='ghapidata'></div>
+	</div>
+</body>
+</html>

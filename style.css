@@ -1,0 +1,14 @@
+.form-control {
+	width: 30%;
+	display: inline-block;
+}
+
+.btn-info {
+	background-color: #0a4859;
+	border: #0a4859;
+	color: white;
+}
+
+#ghusername {
+	margin-left: 20px;
+}
